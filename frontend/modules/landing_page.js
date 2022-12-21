@@ -25,7 +25,7 @@ async function fetchCities() {
     return err;
   }
 }
-
+/*
 function getImage(image, id){
   let imgDiv = document.createElement("div");
   imgDiv.setAttribute("class", " tile")
@@ -52,7 +52,7 @@ function getTextDiv(city, description){
   
   return textDiv;
 }
-
+*/
 
 //Implementation of DOM manipulation to add cities
 function addCityToDOM(id, city, description, image) {
@@ -80,7 +80,6 @@ function addCityToDOM(id, city, description, image) {
                       `;
 
   document.getElementById("data").appendChild(colDiv);
-  
 }
 
 export { init, fetchCities, addCityToDOM };

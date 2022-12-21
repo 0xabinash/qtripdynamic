@@ -4,20 +4,59 @@ import config from "../conf/index.js";
 //Implementation to extract city from query params
 function getCityFromURL(search) {
   // TODO: MODULE_ADVENTURES
+  const param = new URLSearchParams(search);
+  const city = param.get("city")
+  console.log(city);
+  return city;
   // 1. Extract the city id from the URL's Query Param and return it
-
 }
 
 //Implementation of fetch call with a paramterized input based on city
 async function fetchAdventures(city) {
   // TODO: MODULE_ADVENTURES
+  try{
+    const cityAdventures = await fetch(`${config.backendEndpoint}/adventures?city=${city}`);
+    const cityAdventuresData = await cityAdventures.json();
+    console.log(cityAdventuresData)
+    return cityAdventuresData;
+    // return cityAdventuresData;
+  }catch(err){
+    return null;
+  }
   // 1. Fetch adventures using the Backend API and return the data
 
+}
+function createAdventureCard(obj){
+  let colDiv = document.createElement("div");
+  colDiv.setAttribute("class", "col-6 col-lg-3 mb-4");
+  colDiv.innerHTML = `<a href="/detail/?adventure=${obj.id}" id="${obj.id}">
+                        <div class="activity-card rounded">
+                          <div class="m-0 p-0 h-100 w-100 overflow-hidden rounded-top">
+                            <img src="${obj.image}" />
+                          </div>
+                          <div class="category-banner">${obj.category}</div>
+                          <div class="adventure-detail-card w-100" >
+                            <div class="d-flex justify-content-between align-items-center ">
+                              <h6>${obj.name}</h6>
+                              <p>₹${obj.costPerHead}</p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <h6>Duration</h6>
+                              <p>${obj.duration} hours</p>
+                            </div>
+                          </div>
+                        </div>
+                     </a>`;
+  return colDiv;
 }
 
 //Implementation of DOM manipulation to add adventures for the given city from list of adventures
 function addAdventureToDOM(adventures) {
   // TODO: MODULE_ADVENTURES
+  const rowDiv = document.getElementById("data");
+  adventures.forEach(function(ele){
+    rowDiv.append(createAdventureCard(ele));
+  })
   // 1. Populate the Adventure Cards and insert those details into the DOM
 
 }
