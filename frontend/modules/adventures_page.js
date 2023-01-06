@@ -152,6 +152,15 @@ function generateFilterPillsAndUpdateDOM(filters) {
   // appliedCategories.textContent = filters.category[0];
   // 1. Use the filters given as input, update the Duration Filter value and Generate Category Pills
 
+  document.getElementById("duration-select").value = filters.duration;
+
+  filters.category.forEach(function(selectedCategory){
+    let ele = document.createElement("div");
+    ele.className = "category-filter";
+    ele.innerHTML = `<div>${selectedCategory}</div>`;
+    document.getElementById("category-list").appendChild(ele);
+  })
+
 }
 export {
   getCityFromURL,
