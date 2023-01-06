@@ -77,17 +77,20 @@ function filterByDuration(list, low, high) {
 //Implementation of filtering by category which takes in a list of adventures, list of categories to be filtered upon and returns a filtered list of adventures.
 function filterByCategory(list, categoryList) {
   // TODO: MODULE_FILTERS
-  let filteredList = new Array();
+  // let filteredList = new Array();
 
-  for(let i = 0; i < categoryList.category.length; i++){
-    // console.log(categoryList.category[i])
-    let category = categoryList.category[i];
-    for(let j = 0; j < list.length; j++){
-      if(list[j].category === category){
-        filteredList.push(list[j]);
-      }
-    }
-  }
+  // for(let i = 0; i < categoryList.category.length; i++){
+  //   // console.log(categoryList.category[i])
+  //   let category = categoryList.category[i];
+  //   for(let j = 0; j < list.length; j++){
+  //     if(list[j].category === category){
+  //       filteredList.push(list[j]);
+  //     }
+  //   }
+  // }
+  const filteredList = list.filter(function(adventure){
+     return categoryList.includes(adventure.category); 
+  })
 
   return filteredList;
   // 1. Filter adventures based on their Category and return filtered list
@@ -114,7 +117,7 @@ function filterFunction(list, filters) {
   }
 
   if(filters.category.length > 0){
-    categoryList = filterByCategory(categoryList, filters);
+    categoryList = filterByCategory(categoryList, filters["category"]);
   }
   // Place holder for functionality to work in the Stubs
   return categoryList;
