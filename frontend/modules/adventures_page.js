@@ -154,8 +154,7 @@ function generateFilterPillsAndUpdateDOM(filters) {
   // const appliedCategories = document.getElementById("catrgory-list");
   // appliedCategories.textContent = filters.category[0];
   // 1. Use the filters given as input, update the Duration Filter value and Generate Category Pills
-
-  document.getElementById("duration-select").value = filters.duration;
+  document.getElementById("duration-select").value = filters.duration; 
 
   filters.category.forEach(function(selectedCategory){
     let ele = document.createElement("div");

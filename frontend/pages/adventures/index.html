@@ -164,7 +164,8 @@
         function clearDuration(event) {
             // TODO: MODULE_FILTERS
             document.getElementById("data").textContent = "";
-            document.getElementById("category-list").textContent = "";
+            // document.getElementById("category-list").textContent = "";
+            document.getElementById("duration-select").selectedIndex = 0
 
             filters["duration"] = "";
             let filteredAdventures = filterFunction(adventures, filters);
