@@ -27,7 +27,7 @@ async function fetchAdventures(city) {
 function createAdventureCard(obj){
   let colDiv = document.createElement("div");
   colDiv.setAttribute("class", "col-6 col-lg-3 mb-4");
-  colDiv.innerHTML = `<a href="/detail/?adventure=${obj.id}" id="${obj.id}">
+  colDiv.innerHTML = `<a href="detail/?adventure=${obj.id}" id="${obj.id}">
                         <div class="activity-card rounded">
                           <div class="m-0 p-0 h-100 w-100 overflow-hidden rounded-top">
                             <img src="${obj.image}" />
