@@ -34,6 +34,13 @@ function addAdventureDetailsToDOM(adventure) {
   document.getElementById("adventure-subtitle").textContent = adventure.subtitle;
   let divEle = document.getElementById("adventure-content");
   divEle.innerHTML = `<p>${adventure.content}</p>`;
+  const imageArr = adventure.images;
+  images.forEach(function(img){
+    const imageDiv = `<div>
+                      <image src="${img}" alt="image" class="activity-card-image" />
+                     </div>`;
+    document.getElementById("photo-gallery") += imageDiv;
+  })
 }
 
 //Implementation of bootstrap gallery component
