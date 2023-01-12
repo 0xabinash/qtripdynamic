@@ -108,14 +108,20 @@ function captureFormSubmit(adventure) {
   const formEle = document.getElementById("myForm")
   console.log(adventure)
   formEle.addEventListener("submit", async function(event){
-    event.preventDefault();
+    // event.preventDefault();
    
-    const formData = {
-      "adventure" : adventure.id,
-      "name" : formEle["name"].value,
-      "person" : formEle["person"].value,
-      "date" : formEle["date"].value,
-    };
+    // const formData = {
+    //   "adventure" : adventure.id,
+    //   "name" : formEle.elements["name"].value,
+    //   "person" : formEle.elements["person"].value,
+    //   "date" : formEle.elements["date"].value,
+    // };
+    event.preventDefault()
+    let inputs = document.getElementsByTagName("input");
+    let formData = { adventure: adventure.id };
+    for (let i = 0; i < inputs.length; i++) {
+      formData[inputs[i].name] = inputs[i].value;
+    }
     console.log(formData) 
  
     const response = await fetch(config.backendEndpoint + '/reservations/new', {
@@ -131,6 +137,7 @@ function captureFormSubmit(adventure) {
     }
     else{
       alert("Failed!");
+      location.reload(false)
     }
   })
 }

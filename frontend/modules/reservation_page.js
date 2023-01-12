@@ -4,14 +4,15 @@ import config from "../conf/index.js";
 async function fetchReservations() {
   // TODO: MODULE_RESERVATIONS
   // 1. Fetch Reservations by invoking the REST API and return them
-  const fetchedData = await fetch(config.backendEndpoint + "/reservations/");
-  const reservationInfo = await fetchedData.json();
+  try{
+    const fetchedData = await fetch(config.backendEndpoint + "/reservations/");
+    const reservationInfo = await fetchedData.json();
+    return reservationInfo;
+  }catch (ele){
+    return null;
+  }
   // console.log(reservationInfo);
-
-
-
   // Place holder for functionality to work in the Stubs
-  return reservationInfo;
 }
 
 //Function to add reservations to the table. Also; in case of no reservations, display the no-reservation-banner, else hide it.
@@ -26,15 +27,8 @@ function addReservationToTable(reservations) {
     const tableEle = document.getElementById("reservation-table");
     reservations.forEach(function(ele){
       const date = new Date(ele.date).toLocaleDateString("en-IN");
-      const time = new Date(ele.time).toLocaleString("en-IN", {
-        year: "numeric",
-        day: "numeric",
-        month: "long",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-        hour12: true
-      })
+      let timeObj = new Date(ele.time)
+        let time = timeObj.toLocaleDateString('en-IN', {day: 'numeric', month: 'long', year: 'numeric'}) + ', ' + timeObj.toLocaleTimeString('en-IN')
       const tBody = `
       <tr>
         <td>${ele.id}</td>
