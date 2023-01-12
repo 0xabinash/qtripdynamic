@@ -106,28 +106,28 @@ function captureFormSubmit(adventure) {
   // 1. Capture the query details and make a POST API call using fetch() to make the reservation
   // 2. If the reservation is successful, show an alert with "Success!" and refresh the page. If the reservation fails, just show an alert with "Failed!".
   const formEle = document.getElementById("myForm")
+  console.log(adventure)
   formEle.addEventListener("submit", async function(event){
     event.preventDefault();
-    // const date = new Date(event.target.date.value)
+   
     const formData = {
       "adventure" : adventure.id,
-      "name" : event.target.name.value,
-      "person" :  event.target.person.value,
-      "date" : event.target.date.value
+      "name" : formEle["name"].value,
+      "person" : formEle["person"].value,
+      "date" : formEle["date"].value,
     };
-    console.log(formData)
-
+    console.log(formData) 
+ 
     const response = await fetch(config.backendEndpoint + '/reservations/new', {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
       body: JSON.stringify(formData),
+      headers: {"Content-Type": "application/json; charset=UTF-8"}
     });
     
     let result = await response.json();
     if(result.success){
       alert("Success!");
+      location.reload(true)
     }
     else{
       alert("Failed!");

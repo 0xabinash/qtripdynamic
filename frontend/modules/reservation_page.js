@@ -57,9 +57,6 @@ function addReservationToTable(reservations) {
     document.getElementById("no-reservation-banner").style.display = "block";
     document.getElementById("reservation-table-parent").style.display = "none";
   }
-
-  
-
   //Conditionally render the no-reservation-banner and reservation-table-parent
 
   /*
