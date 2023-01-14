@@ -107,8 +107,12 @@ function captureFormSubmit(adventure) {
   // 2. If the reservation is successful, show an alert with "Success!" and refresh the page. If the reservation fails, just show an alert with "Failed!".
   const formEle = document.getElementById("myForm")
   console.log(adventure)
+
+  const date2 = Date('Thu, 01 Jan 1970 00:00:00 GMT') 
+console.log(date2)
+
   formEle.addEventListener("submit", async function(event){
-    // event.preventDefault();
+    event.preventDefault();
    
     // const formData = {
     //   "adventure" : adventure.id,
@@ -116,10 +120,12 @@ function captureFormSubmit(adventure) {
     //   "person" : formEle.elements["person"].value,
     //   "date" : formEle.elements["date"].value,
     // };
-    event.preventDefault()
+
     let inputs = document.getElementsByTagName("input");
+    console.log(inputs.length)
     let formData = { adventure: adventure.id };
     for (let i = 0; i < inputs.length; i++) {
+      console.log("inputs name: " + " " + inputs[i].name)
       formData[inputs[i].name] = inputs[i].value;
     }
     console.log(formData) 

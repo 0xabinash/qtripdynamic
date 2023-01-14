@@ -28,7 +28,11 @@ function addReservationToTable(reservations) {
     reservations.forEach(function(ele){
       const date = new Date(ele.date).toLocaleDateString("en-IN");
       let timeObj = new Date(ele.time)
-        let time = timeObj.toLocaleDateString('en-IN', {day: 'numeric', month: 'long', year: 'numeric'}) + ', ' + timeObj.toLocaleTimeString('en-IN')
+        let time = timeObj.toLocaleDateString('en-IN', {
+          day: 'numeric',
+           month: 'long',
+            year: 'numeric'}) + ', ' + timeObj.toLocaleTimeString('en-IN')
+            
       const tBody = `
       <tr>
         <td>${ele.id}</td>
